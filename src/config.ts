@@ -6,18 +6,38 @@ type Config = {
 
 export default {
   backgrounds: {
-    forest: {
+    safe: {
       layers: [
-        "sky",
-        "clouds_1",
-        "rocks",
-        "clouds_2",
-        "ground_1",
-        "ground_2",
-        "ground_3",
-        "plant",
+        "bg"
       ],
-      panSpeed: 0.2,
+      panSpeed: 0,
     },
   },
+
+  foregrounds: {
+    blink: {
+      image:
+        "bling"
+    },
+    door: {
+      image:
+        "door"
+    },
+    openedDoor: {
+      image:
+        "doorOpen"
+    },
+    openedDoorShadow: {
+      image:
+        "doorOpenShadow"
+    },
+    handle: {
+      image:
+        "handle"
+    },
+    handleShadow: {
+      image:
+        "handleShadow"
+    },
+  }
 } as Config;
