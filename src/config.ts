@@ -1,23 +1,22 @@
-import type { BgConfig } from "./prefabs/ParallaxBackground";
+import type { BgConfig } from "./prefabs/SimpleBackground";
 
 type Config = {
-  backgrounds: Record<string, BgConfig>;
+  backgrounds: Record<string, BgConfig>,
+  foregrounds: Record<string, BgConfig>
 };
 
 export default {
   backgrounds: {
     safe: {
-      layers: [
+      image:
         "bg"
-      ],
-      panSpeed: 0,
     },
   },
 
   foregrounds: {
     blink: {
       image:
-        "bling"
+        "blink"
     },
     door: {
       image:
