@@ -58,7 +58,6 @@ export class Handle extends Container {
       this.enteredPair.displaceNum = this.enteredPair.displaceNum == 9 ? 1 : this.enteredPair.displaceNum + 1;
       this.enterPairTimer = 0;  // Reset timer after each handle turn
       this.enterPairTicker.start();
-      
       // Rotation is 1 because I figured out for some reason the function is executing on every frame, so 60 fps = 60 degrees
       // Could not figure out why the animations play only once
       this.turnHandleAnim(1, currentDirection);
