@@ -9,3 +9,6 @@ export const HANDLE_ANCHOR_SHADOW = {x : 0.5, y: 0.5};
 export const BLINK_SCALE = 0.3;
 export const BLINK_ANCHOR = {x : 0.45, y: 0.36};
 export const HANDLE_SHADOW_OFFSET = {x: 1.03, y: 1.95};
+export const NUMBER_OF_PAIRS = 3;
+export const TIME_TO_ENTER_PAIR = 50;
+export const TIME_TO_RESTART_GAME = 300;

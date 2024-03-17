@@ -1,48 +1,31 @@
-import gsap from "gsap";
 import { Container, DisplayObject } from "pixi.js";
-import SimpleBackground from "../prefabs/SimpleBackground";
-import Keyboard from "../core/Keyboard";
+import SimpleTexture from "./SimpleTexture";
 import config from "../config";
 import * as constfl from "../constants";
 import { Handle } from "./Handle";
 
 
-enum Directions {
-  LEFT = -1,
-  RIGHT = 1,
-}
-
-type AnimState = {
-  anim: string;
-  soundName?: string;
-  loop?: boolean;
-  speed?: number;
-};
-
 export class Door extends Container {
-  private keyboard = Keyboard.getInstance();
-  private closedSprite: SimpleBackground;
-  private openedSprite: SimpleBackground;
-  private openedShadowSprite: SimpleBackground;
+  private closedSprite: SimpleTexture;
+  private openedSprite: SimpleTexture;
+  private openedShadowSprite: SimpleTexture;
   private handle: Handle;
-  currentState: AnimState | null = null;
 
-  private decelerationTween?: gsap.core.Tween;
 
   constructor() {
     super();
     this.scale.set(constfl.DOOR_SCALE);
-    this.closedSprite = new SimpleBackground(config.foregrounds.door);
-    this.closedSprite.tilingSprites[0].anchor.x = constfl.DOOR_ANCHOR_CLOSED.x;
-    this.closedSprite.tilingSprites[0].anchor.y = constfl.DOOR_ANCHOR_CLOSED.y;
+    this.closedSprite = new SimpleTexture(config.foregrounds.door);
+    this.closedSprite.getSpriteObject().anchor.x = constfl.DOOR_ANCHOR_CLOSED.x;
+    this.closedSprite.getSpriteObject().anchor.y = constfl.DOOR_ANCHOR_CLOSED.y;
 
-    this.openedSprite = new SimpleBackground(config.foregrounds.openedDoor);
-    this.openedSprite.tilingSprites[0].anchor.x = constfl.DOOR_ANCHOR_OPENED.x;
-    this.openedSprite.tilingSprites[0].anchor.y = constfl.DOOR_ANCHOR_OPENED.y;
+    this.openedSprite = new SimpleTexture(config.foregrounds.openedDoor);
+    this.openedSprite.getSpriteObject().anchor.x = constfl.DOOR_ANCHOR_OPENED.x;
+    this.openedSprite.getSpriteObject().anchor.y = constfl.DOOR_ANCHOR_OPENED.y;
 
-    this.openedShadowSprite = new SimpleBackground(config.foregrounds.openedDoorShadow);
-    this.openedShadowSprite.tilingSprites[0].anchor.x = constfl.DOOR_ANCHOR_OPENED_SHADOW.x;
-    this.openedShadowSprite.tilingSprites[0].anchor.y = constfl.DOOR_ANCHOR_OPENED_SHADOW.y;
+    this.openedShadowSprite = new SimpleTexture(config.foregrounds.openedDoorShadow);
+    this.openedShadowSprite.getSpriteObject().anchor.x = constfl.DOOR_ANCHOR_OPENED_SHADOW.x;
+    this.openedShadowSprite.getSpriteObject().anchor.y = constfl.DOOR_ANCHOR_OPENED_SHADOW.y;
 
     this.handle = new Handle(this.closedSprite.width, this.closedSprite.height);
 
@@ -50,10 +33,21 @@ export class Door extends Container {
     this.addChild(this.handle);
     this.addChild(this.openedShadowSprite);
     this.addChild(this.openedSprite);
+    this.closeDoor();
+  }
+
+  public async openDoor() {
+    this.closedSprite.visible = false;
+    this.openedShadowSprite.visible = true;
+    this.openedSprite.visible = true;
+    this.handle.visible = false;
+  }
+
+  public async closeDoor() {
     this.openedShadowSprite.visible = false;
     this.openedSprite.visible = false;
     this.closedSprite.visible = true;
+    this.handle.visible = true;
   }
   
-
 }

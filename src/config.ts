@@ -1,4 +1,4 @@
-import type { BgConfig } from "./prefabs/SimpleBackground";
+import type { BgConfig } from "./prefabs/SimpleTexture";
 
 type Config = {
   backgrounds: Record<string, BgConfig>,

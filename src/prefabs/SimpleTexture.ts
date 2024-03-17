@@ -51,4 +51,8 @@ export default class ParallaxBackground extends Container {
 
     centerObjects(this);
   }
+
+  public getSpriteObject() : Sprite {
+    return this.tilingSprites[0];
+  }
 }
