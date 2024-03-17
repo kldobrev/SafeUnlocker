@@ -73,7 +73,7 @@ export class Handle extends Container {
     if(this.safeCombination.equalsPairAtIdx(this.numPairsEntered, this.enteredPair)) {
       this.numPairsEntered++;
       this.resetEnteredPair();
-      if(this.numPairsEntered == 3) {
+      if(this.numPairsEntered == constfl.NUMBER_OF_PAIRS) {
         Game.gameWon = true;
         this.resetComparisonProps();
       }
